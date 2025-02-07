@@ -1,0 +1,12 @@
+syntax = "proto3";
+package common;
+
+option go_package = "pkg/pb";
+
+message Empty {
+}
+
+message Command {
+  string In = 1;
+  string Out = 2;
+}

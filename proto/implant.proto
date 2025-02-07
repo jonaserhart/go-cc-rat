@@ -1,0 +1,11 @@
+syntax = "proto3";
+import "common.proto";
+
+package implant;
+
+option go_package = "pkg/pb";
+
+service Implant {
+  rpc FetchCommand (common.Empty) returns (common.Command);
+  rpc SendOutput (common.Command) returns (common.Empty);
+}

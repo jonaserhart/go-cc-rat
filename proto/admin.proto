@@ -1,0 +1,11 @@
+syntax = "proto3";
+import "common.proto";
+
+package admin;
+
+option go_package = "pkg/pb";
+
+service Admin {
+  rpc RunCommand (common.Command) returns (common.Command);
+}
+
