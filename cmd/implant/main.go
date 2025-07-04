@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jonaserhart/go_c2_rat/pkg/pb"
+	"github.com/jonaserhart/go_c2_rat/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

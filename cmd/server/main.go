@@ -5,9 +5,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/jonaserhart/go_c2_rat/internal/server/admin"
-	"github.com/jonaserhart/go_c2_rat/internal/server/implant"
-	"github.com/jonaserhart/go_c2_rat/pkg/pb"
+	"github.com/jonaserhart/go_c2_rat/internal/server"
+	"github.com/jonaserhart/go_c2_rat/pb"
 	"google.golang.org/grpc"
 )
 
@@ -20,8 +19,8 @@ func main() {
 	)
 
 	work, output = make(chan *pb.Command), make(chan *pb.Command)
-	implant := implant.NewImplantserver(work, output)
-	admin := admin.NewAdminServer(work, output)
+	implant := server.NewImplantserver(work, output)
+	admin := server.NewAdminServer(work, output)
 
 	if implantListener, err = net.Listen("tcp", fmt.Sprintf("localhost:%d", 4444)); err != nil {
 		log.Fatal(err)

